@@ -1,6 +1,6 @@
 {
-  "name": "diskovod",
-  "version": "0.1.0",
+  "name": "shablon",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,13 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "npm-check-updates": "^16.14.20",
     "pinia": "^2.1.7",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue": "^3.4.33",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
-    "sass": "^1.72.0",
-    "vite": "^5.1.5"
+    "@vitejs/plugin-vue": "^5.0.5",
+    "sass": "^1.77.8",
+    "vite": "^5.3.4"
   }
 }
