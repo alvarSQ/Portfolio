@@ -1,22 +1,39 @@
 // тк мы к ним обращаемся везде ниже
-@import 'utils/vars';
-@import 'utils/reset';
+@import "utils/vars";
+@import "utils/reset";
+
+@font-face {
+  font-family: "JetBrainsMono";
+  font-style: normal;
+  line-height: normal;
+  font-weight: 300;
+  /* Браузер сначала попробует найти шрифт локально */
+  src:
+    local("JetBrainsMono"),
+    /* Если не получилось, загрузит woff2 */ url("@/assets/fonts/JetBrainsMono/webfonts/JetBrainsMono-Regular.woff2")
+      format("woff2"),
+    /* Если браузер не поддерживает woff2, загрузит woff */
+      url("@/assets/fonts/JetBrainsMono/ttf/JetBrainsMono-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  /* Браузер сначала попробует найти шрифт локально */
+  src:
+    local("Inter"),
+    /* Если не получилось, загрузит woff2 */ url("@/assets/fonts/Inter/Inter-Regular.woff2") format("woff2"),
+    /* Если браузер не поддерживает woff2, загрузит woff */ url("@/assets/fonts/inter/InterVariable.ttf") format("ttf");
+}
 
 html {
   line-height: $mainLineHeight;
   font-size: $mainFontSize;
   color: $mainFontColor;
   height: 100%;
-  @media screen and (max-width: $desktopWidth) {
-    font-size: 16px;
-  }
-  @media screen and (max-width: $tableWidth) {
-    font-size: 15px;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    font-size: 14px;
-  }
 }
+
 button {
   cursor: pointer;
 }
@@ -70,29 +87,18 @@ section,
 .section {
   position: relative;
   padding: 40px 0;
-  @media screen and (max-width: $desktopWidth) {
-    padding: 36px 0;
-  }
-  @media screen and (max-width: $desktopWidth) {
-    padding: 28px 0;
-  }
-  @media screen and (max-width: $desktopWidth) {
-    padding: 20px 0;
-  }
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
   margin: 0 auto;
-}
-
-.wrapper-content {
-  display: flex;
-  flex-direction: column;
-  min-height: 70vh;
-  margin-top: 80px; // if header is fixed do mt: headerHeight
+  color: #fff;
+  background-color: #000;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .container {
@@ -100,31 +106,94 @@ section,
   flex: 0 0 auto;
   margin: 0 auto;
   width: 100%;
-  max-width: $lgDesktopWidth;
-  @media screen and (max-width: $lgDesktopWidth) {
-    padding: 0 16px;
+  max-width: 1200px;
+  @media (max-width: 1240px) {
+    width: 940px;
   }
-  @media screen and (max-width: $smDesktopWidth) {
-    max-width: $tableWidth;
+  @media (max-width: 980px) {
+    width: 620px;
   }
-  @media screen and (max-width: $tableWidth) {
-    max-width: $smTableWidth;
+  @media (max-width: 680px) {
+    max-width: 460px;
   }
-  @media screen and (max-width: $smTableWidth) {
-    max-width: $phoneWidth;
-  }
-  @media screen and (max-width: $phoneWidth) {
-    max-width: $smPhoneWidth;
+  @media (max-width: 520px) {
+    width: 300px;
   }
 }
 
-.view-sm {
-  max-width: 700px;
-  &.isCenter {
-    margin-left: auto;
-    margin-right: auto;
-  }
+.green {
+  color: #48b322;
 }
 
-@import './common/_common';
-@import './helpers/_helpers';
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("@/assets/img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 980px) {
+        flex-direction: row;
+    }
+}
+
+.ellips {
+    top: 240px;
+    left: -260px;
+    width: 747px;
+    height: 444px;
+    position: absolute;
+    background-image: url("@/assets/img/ellipse2.png");
+    @media (max-width: 680px) {
+        top: 140px;
+    }
+    @media (max-width: 520px) {
+        top: 97px;
+        left: -276px;
+    }
+}
+
+.line {
+    height: 2px;
+    background: linear-gradient(90deg, #d99543 0%, rgba(217, 149, 67, 0) 100%);
+    z-index: 1;
+}
+
+.bg {
+    position: absolute;
+    top: -800px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 1284px;
+    height: 1752px;
+    background-image: url("@/assets/img/ellipse.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.cell {
+    border: 2px solid white;
+    margin: 0 -2px -2px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $titleFont;
+    font-size: 14px;
+    color: white;
+    a {
+        color: white;
+    }
+    &:hover .sm {
+        fill: #48b322;
+    }
+}
+
+@import "./common/_common";
+@import "./helpers/_helpers";
