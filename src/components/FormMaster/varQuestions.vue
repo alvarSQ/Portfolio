@@ -17,12 +17,12 @@
       </label>
     </li>
   </ul>
-  <div class="line-content">
-    <button class="form_btn" @click="addAnswer">Добавить вариант ответа</button>
+  <div class="line-content disp-block">
+    <button class="form_btn" @click="addAnswer">Добавить вариант&nbsp;ответа</button>
     <button class="form_btn" :disabled="question.isTextArea" @click="question.isTextArea = true">
       Добавить свободный ответ
     </button>
-    <button class="form_btn" @click="addQuestion">Добавить еще вопрос</button>
+    <button class="form_btn" @click="addQuestion">Добавить еще&nbsp;вопрос</button>
   </div>
 
 </template>

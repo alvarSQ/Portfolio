@@ -9,9 +9,9 @@
       <textarea placeholder="Описание"></textarea>
     </div>
     <div class="form_container" v-for="item in queSt.getByActiv" :key="item.id">
-      <div class="line-content marBot20">
+      <div class="line-content disp-block marBot20">
         <input type="text" placeholder="Вопрос" />
-        <div style="margin-left: 10px;">
+        <div class="marLeft10">
           <CustomSelect :options="['Один из списка', 'Несколько из списка']" :default="'Один из списка'"
             @selectSort="" />
         </div>
@@ -29,9 +29,10 @@
       </div>
       <ListQuestions :question="item" />
     </div>
-    <div class="line-content">
-      <button class="form_btn" @click="">Сохранить форму в файл</button>
-      <button class="form_btn" @click="startForm">Перейти к опросу</button>
+    <div class="line-content disp-block">
+      <button class="form_btn" @click="">Сохранить форму&nbsp;в&nbsp;файл</button>
+      <button class="form_btn" @click="">Пример заполненной&nbsp;формы</button>
+      <button class="form_btn" @click="startForm">Перейти к&nbsp;опросу</button>
     </div>
   </div>
 </template>
@@ -86,47 +87,28 @@ const delQuestion = (id: number) => queSt.questions.splice(id - 1, 1)
 <style scoped lang="scss">
 @import "@/assets/scss/utils/vars.scss";
 
-.wrapper-work {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: relative;
-  min-height: 100vh;
-}
+#file_input {
+  width: 500px;
 
-.bg-work {
-  position: absolute;
-  top: -800px;
-  left: 50%;
-  transform: translate(-50%);
-  width: 1284px;
-  height: 1752px;
-  background-image: url("@/assets/img/ellipse.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.title-work {
-  font-family: $titleFont;
-  color: #48b322;
-  font-size: 60px;
-  font-weight: 300;
-  line-height: 60px;
-  text-transform: uppercase;
-  padding: 130px 0 60px;
+  @media (max-width: 980px) {
+    width: 85%;
+  }
 
   @media (max-width: 680px) {
-    font-size: 40px;
-    line-height: 44px;
-    padding: 40px 0;
+    width: 70%;
+  }
+
+  @media (max-width: 520px) {
+    width: 57%;
   }
 }
 
+.marLeft10 {
+  margin-left: 10px;
 
-#file_input {
-  width: 500px;
+  @media (max-width: 680px) {
+    margin-top: 20px;
+    margin-left: 0;
+  }
 }
-
-
-
-
 </style>

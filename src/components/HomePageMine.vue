@@ -55,6 +55,13 @@ import BlockSocialIcon from "@/components/UI/blockSocialIcon.vue";
   justify-content: space-between;
   align-items: flex-end;
   padding-bottom: 30px;
+
+  @media (max-width: 980px) {
+    flex-direction: column;
+    align-items: normal;
+    gap: 60px;
+    max-width: 620px;
+  }
 }
 
 .mH100 {

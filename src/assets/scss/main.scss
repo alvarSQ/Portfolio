@@ -37,7 +37,7 @@ html {
 
 button {
   cursor: pointer;
-   font-family: $titleFont;
+  font-family: $titleFont;
 }
 
 body {
@@ -128,73 +128,73 @@ section,
 }
 
 .image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-image: url("@/assets/img/bg.jpg");
-    background-size: cover;
-    background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url("@/assets/img/bg.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .vertical {
-    display: flex;
-    flex-direction: column;
-    @media (max-width: 980px) {
-        flex-direction: row;
-    }
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 980px) {
+    flex-direction: row;
+  }
 }
 
 .ellips {
-    top: 240px;
-    left: -260px;
-    width: 747px;
-    height: 444px;
-    position: absolute;
-    background-image: url("@/assets/img/ellipse2.png");
-    @media (max-width: 680px) {
-        top: 140px;
-    }
-    @media (max-width: 520px) {
-        top: 97px;
-        left: -276px;
-    }
+  top: 240px;
+  left: -260px;
+  width: 747px;
+  height: 444px;
+  position: absolute;
+  background-image: url("@/assets/img/ellipse2.png");
+  @media (max-width: 680px) {
+    top: 140px;
+  }
+  @media (max-width: 520px) {
+    top: 97px;
+    left: -276px;
+  }
 }
 
 .line {
-    height: 2px;
-    background: linear-gradient(90deg, #d99543 0%, rgba(217, 149, 67, 0) 100%);
-    z-index: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #d99543 0%, rgba(217, 149, 67, 0) 100%);
+  z-index: 1;
 }
 
 .bg {
-    position: absolute;
-    top: -800px;
-    left: 50%;
-    transform: translate(-50%);
-    width: 1284px;
-    height: 1752px;
-    background-image: url("@/assets/img/ellipse.png");
-    background-size: cover;
-    background-position: center;
+  position: absolute;
+  top: -800px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 1284px;
+  height: 1752px;
+  background-image: url("@/assets/img/ellipse.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .cell {
-    border: 2px solid white;
-    margin: 0 -2px -2px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: $titleFont;
-    font-size: 14px;
+  border: 2px solid white;
+  margin: 0 -2px -2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $titleFont;
+  font-size: 14px;
+  color: white;
+  a {
     color: white;
-    a {
-        color: white;
-    }
-    &:hover .sm {
-        fill: #48b322;
-    }
+  }
+  &:hover .sm {
+    fill: #48b322;
+  }
 }
 
 .line-content {
@@ -239,6 +239,18 @@ textarea {
       border-color: #fff;
     }
   }
+  @media (max-width: 980px) {
+    font-size: 90%;
+    width: 30%;
+    height: 58px;
+    padding: 0px;
+  }
+  @media (max-width: 680px) {
+    width: 100%;
+    height: 58px;
+    padding: 0px;
+    margin-bottom: 10px;
+  }
 }
 
 .title-work {
@@ -262,6 +274,9 @@ textarea {
   padding: 20px;
   margin-bottom: 20px;
   font-family: $titleFont;
+  @media (max-width: 520px) {
+    width: 300px;
+  }
 }
 
 @import "./common/_common";

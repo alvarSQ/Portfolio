@@ -46,6 +46,9 @@ const open = ref(false)
   outline: none;
   height: auto;
   line-height: 47px;
+  @media (max-width: 680px) {
+        width: 100%;
+      }
 }
 
 .custom-select 

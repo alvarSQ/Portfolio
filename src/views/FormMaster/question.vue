@@ -1,36 +1,38 @@
 <template>
   <div class="title-work">{{ queSt.getOnePage.title }}</div>
-    <div class="form_wrapper">
-      <div class="form_container" v-if="hasQuestion">
-        <div class="line-content marBot10">
-          <h2>{{ question.title }}</h2>
-          <p class="form_counter ">{{ id }} из {{ queSt.getQuestions.length }}</p>
-        </div>
-        <div class="line marBot20" />
-
-        <ulQuestions :question="question" />
-
-        <div class="answer_string">
-          <b>Ваш ответ:</b> {{ question.resultSurvey.join(', ') }}
-        </div>
-
-        <button class="form_btn marBot10" style="width: 100%;" :disabled="question.isAnswer"
-          @click="toАnswer">Ответить</button>
-        <div class="line-content">
-          <button class="form_btn" :disabled="isMinPage" @click="toBack">
-            Назад
-          </button>
-          <button class="form_btn" v-if="isMaxPage" @click="toEnd">
-            Закончить
-          </button>
-          <button class="form_btn" v-else @click="toForward">
-            Вперед
-          </button>
-
-        </div>
+  <div class="form_wrapper">
+    <div class="form_container" v-if="hasQuestion">
+      <div class="line-content marBot10">
+        <h2>{{ question.title }}</h2>
       </div>
-      <notFound v-else />
+      <div class="line marBot20" />
+
+      <ulQuestions :question="question" />
+
+      <div class="answer_string">
+        <b>Ваш ответ:</b> {{ question.resultSurvey.join(', ') }}
+      </div>
+
+      <button class="form_btn marBot10" style="width: 100%;" :disabled="question.isAnswer"
+        @click="toАnswer">Ответить</button>
+      <div class="line-content">
+        <button class="form_btn w40" :disabled="isMinPage" @click="toBack">
+          Назад
+        </button>
+
+        <p class="form_counter">{{ id }} из {{ queSt.getQuestions.length }}</p>
+
+        <button class="form_btn w40" v-if="isMaxPage" @click="toEnd">
+          Конец
+        </button>
+        <button class="form_btn w40" v-else @click="toForward">
+          Вперед
+        </button>
+
+      </div>
     </div>
+    <notFound v-else />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -86,5 +88,17 @@ const isMinPage = computed(() => id.value <= 1)
   margin-top: 10px;
   padding: 10px;
   min-height: 43px;
+}
+
+// .form_counter {
+//   @media (max-width: 680px) {
+//       font-size: 50%;
+//     }
+// }
+
+.w40 {
+  @media (max-width: 680px) {
+      width: 35%;
+    }
 }
 </style>

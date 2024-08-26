@@ -6,6 +6,16 @@
   margin-bottom: 10px;
 }
 
+.marLeft10 {
+    margin-left: 10px;
+}
+
+.disp-block {
+  @media (max-width: 680px) {
+    display: block !important;
+  }
+}
+
 // old
 .oneLine {
     display: flex;
@@ -20,6 +30,8 @@
 .disp-none {
     display: none !important;
 }
+
+
 
 .gridSpan2 {
     grid-column: span 2;
