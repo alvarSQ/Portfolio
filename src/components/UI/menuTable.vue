@@ -1,6 +1,6 @@
 <template>
   <div class="menu_table">
-    <div class="first_column cell_menu" @click="">
+    <div class="first_column cell_menu" @click="goHome">
       <a>
         <p class="logo">ЯРОСЛАВ</p>
       </a>
@@ -12,10 +12,10 @@
       <div class="first_row">
         <p class="cell_menu fScolorcurs">Примеры работ</p>
       </div>
-      <div class="second_row">
-        <a class="cell_menu hover" href="#"> Форм-Мастер </a>
-        <a class="cell_menu hover" href="#"> Менеджер Задач </a>
-        <a class="cell_menu hover" href="#"> diskovod.com </a>
+      <div class="second_row">        
+        <a class="cell_menu hover" @click="goWorks(`form-master`)"> Форм-Мастер </a>
+        <a class="cell_menu hover" target="_blank" href="https://task-tracker.argovera.ru"> Менеджер Задач </a>
+        <a class="cell_menu hover" target="_blank" href="https://diskovod.argovera.ru/"> diskovod.com </a>
       </div>
     </div>
     <div class="menu_column cell_menu" @click="">
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-// import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 // import { useVarStore } from '@/stores/vars.js'
 // import { useCategoriesStore } from '@/stores/categories.js'
 // import { useProductsStore } from '@/stores/products.js'
@@ -33,7 +33,7 @@
 // const catStore = useCategoriesStore()
 // const prodStore = useProductsStore()
 
-// const router = useRouter()
+const router = useRouter()
 // const route = useRoute()
 
 // const goCategory = (slug) => {
@@ -42,11 +42,15 @@
 //   varStore.isError = false
 // }
 
-// const goHome = () => router.push({ name: 'home' })
+const goHome = () => router.push({ name: 'home' })
+
+const goWorks = (slug: string) => router.push({ name: slug })
+
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/scss/utils/vars.scss";
+
 
 .menu_table {
   display: grid;
@@ -111,6 +115,7 @@
     padding: 30px 0;
   }
 }
+
 .hover {
   &:hover {
     color: #48b322;

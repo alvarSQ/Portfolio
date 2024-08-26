@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -41,7 +41,7 @@ const open = ref(false)
 <style lang="scss" scoped>
 .custom-select {
   position: relative;
-  width: 100%;
+  width: 260px;
   text-align: left;
   outline: none;
   height: auto;
@@ -53,7 +53,7 @@ const open = ref(false)
   border: 2px solid white;
   font-size: 16px;
   color: #fff;
-  padding: 6px 23px;
+  padding: 3px 20px;
   cursor: pointer;
   user-select: none;
 }
@@ -79,10 +79,10 @@ const open = ref(false)
   border: 2px solid #48b322;
   position: absolute;
   background-color: #000;
-  top: 61px;
+  // top: 61px;
   left: 0;
   right: 0;
-  line-height: 61px;
+  // line-height: 61px;
   z-index: 1;
 }
 

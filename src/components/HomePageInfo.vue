@@ -10,9 +10,8 @@
         </div>
         <div class="text-blocks5">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt unde enim cum voluptate sapiente, incidunt
-            sequi quos architecto dolores? Maxime, sint? Cum, omnis impedit. Provident explicabo quod voluptate nobis
-            officiis.
+            Подробное описание работ на <a href="https://github.com/alvarSQ" target="_blank"
+              >github.com/alvarSQ</a>
           </p>
         </div>
       </div>

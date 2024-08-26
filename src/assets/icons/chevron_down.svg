@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="30px" height="17px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 21.25 12.36"
+ xmlns:xlink="http://www.w3.org/1999/xlink"> 
+ <g id="chevron_down">
+  <metadata id="chevron_down"/>
+  <rect class="fil0" transform="matrix(0.607348 0.607348 -0.707107 0.707107 1.71825 0.0141315)" width="17.5" height="2.43" fill="#fff"/>
+  <rect class="fil0" transform="matrix(-0.607348 0.607348 -0.707107 -0.707107 21.2518 1.71825)" width="17.5" height="2.43" fill="#fff"/>
+ </g>
+</svg>

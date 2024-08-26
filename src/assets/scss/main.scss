@@ -1,6 +1,7 @@
 // тк мы к ним обращаемся везде ниже
 @import "utils/vars";
 @import "utils/reset";
+@import "utils/modi";
 
 @font-face {
   font-family: "JetBrainsMono";
@@ -36,6 +37,7 @@ html {
 
 button {
   cursor: pointer;
+   font-family: $titleFont;
 }
 
 body {
@@ -64,12 +66,12 @@ h6 {
   margin: 0;
 }
 
-input,
-textarea,
-select,
-button {
-  border: 1px solid $border-base;
-}
+// input,
+// textarea,
+// select,
+// button {
+//   border: 1px solid $border-base;
+// }
 
 a {
   text-decoration: none;
@@ -193,6 +195,73 @@ section,
     &:hover .sm {
         fill: #48b322;
     }
+}
+
+.line-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  h2 {
+    font-size: 25px;
+  }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  accent-color: #48b322;
+}
+
+input,
+select,
+textarea {
+  padding: 16px 26px;
+  font-family: $titleFont;
+}
+
+.q_del {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.form_btn {
+  padding: 10px 20px;
+  border: 2px, solid, #fff;
+  &:hover {
+    border-color: #48b322;
+  }
+  &:disabled {
+    cursor: auto;
+    color: gray;
+    &:hover {
+      border-color: #fff;
+    }
+  }
+}
+
+.title-work {
+  font-family: $titleFont;
+  color: #48b322;
+  font-size: 60px;
+  font-weight: 300;
+  line-height: 60px;
+  text-transform: uppercase;
+  padding: 130px 0 60px;
+
+  @media (max-width: 680px) {
+    font-size: 40px;
+    line-height: 44px;
+    padding: 40px 0;
+  }
+}
+
+.form_container {
+  border: 2px solid white;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-family: $titleFont;
 }
 
 @import "./common/_common";

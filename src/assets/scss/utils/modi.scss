@@ -1,0 +1,100 @@
+.marBot20 {
+  margin-bottom: 20px;
+}
+
+.marBot10 {
+  margin-bottom: 10px;
+}
+
+// old
+.oneLine {
+    display: flex;
+    align-items: center;
+}
+
+.spaseBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+.disp-none {
+    display: none !important;
+}
+
+.gridSpan2 {
+    grid-column: span 2;
+}
+
+.padd20 {
+    padding: 20px !important;
+}
+
+.padd30 {
+    padding: 30px 0;
+}
+
+.padTop18 {
+    padding-top: 18px;
+}
+
+.mH100vh {
+    min-height: 100vh;
+}
+
+.absL20 {
+    position: absolute;
+    left: 20px;
+}
+
+.absL40 {
+    position: absolute;
+    left: 40px;
+}
+
+.fS14 {
+    font-size: 14px;
+    line-height: normal;
+}
+
+.fS22 {
+    font-size: 22px;
+    line-height: normal;
+}
+
+.text-align-center {
+    @media (max-width: 520px) {
+        text-align: center;
+    }
+}
+
+.grin {
+    color: #48b322;
+}
+
+.w66 {
+    width: 66px;
+    height: 66px;
+}
+.w44 {
+    width: 44px;
+    height: 44px;
+}
+
+.w86 {
+    width: 86px;
+    height: 86px;
+}
+
+.opacity {
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+}
+
+
+.mW640 {
+    max-width: 640px;
+}
+
+.mH90 {
+    min-height: 90px;
+}
