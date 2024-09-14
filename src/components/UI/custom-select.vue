@@ -4,9 +4,12 @@
       {{ selected }}
     </div>
     <div class="items" :class="{ selectHide: !open }">
-      <div v-for="(option, i) of options" :key="i"
-        @click="selected = option; open = false; $emit('selectSort', selected)"
-        :class="{ itemsGreen: option === selected }">
+      <div
+        v-for="(option, i) of options"
+        :key="i"
+        @click="selected = option; open = false; selectInput(selected as string)"
+        :class="{ itemsGreen: option === selected }"
+      >
         {{ option }}
       </div>
     </div>
@@ -14,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
 const props = defineProps({
   options: {
@@ -31,11 +34,26 @@ const props = defineProps({
     required: false,
     default: 0,
   },
-})
+  item: {
+    type: Object,
+    required: false,
+    default: null,
+  },
+});
 
-const selected = ref(props.default ? props.default : (props.options.length > 0 ? props.options[0] : null))
-const open = ref(false)
+const selected = ref(
+  props.default ? props.default : props.options.length > 0 ? props.options[0] : null
+);
+const open = ref(false);
 
+const selectInput = (selected: string) => {
+  if (selected === "Один из списка") {
+    props.item.typeCheck = "radio";
+  }
+  if (selected === "Несколько из списка") {
+    props.item.typeCheck = "checkbox";
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -47,12 +65,11 @@ const open = ref(false)
   height: auto;
   line-height: 47px;
   @media (max-width: 680px) {
-        width: 100%;
-      }
+    width: 100%;
+  }
 }
 
-.custom-select 
-.selected {
+.custom-select .selected {
   border: 2px solid white;
   font-size: 16px;
   color: #fff;
@@ -61,21 +78,24 @@ const open = ref(false)
   user-select: none;
 }
 
-.custom-select 
-.selected.open {
+.custom-select .selected.open {
   border: 2px solid #fff;
 }
 
-.custom-select 
-.selected:after {
+.custom-select .selected:after {
   position: absolute;
   right: 2em;
-  zoom: 55%;  
-  content: url("@/assets/icons/chevron_down.svg#chevron_down");
+  zoom: 55%;
+  content: url("@/assets/icons/chevron_down.svg#chevron_down"); 
 }
 
-.custom-select 
-.items {
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+  .selected:after {
+    top: 2em;
+  }
+}
+
+.custom-select .items {
   color: #fff;
   font-size: 16px;
   overflow: hidden;
@@ -93,16 +113,14 @@ const open = ref(false)
   color: #48b322 !important;
 }
 
-.custom-select 
-.items div {
+.custom-select .items div {
   color: #fff;
   padding-left: 1em;
   cursor: pointer;
   user-select: none;
 }
 
-.custom-select 
-.items div:hover {
+.custom-select .items div:hover {
   background-color: #202020;
 }
 

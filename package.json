@@ -1,5 +1,5 @@
 {
-  "name": "shablon",
+  "name": "portfolio",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^22.5.4",
     "npm-check-updates": "^16.14.20",
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^4.0.1",
     "tslint": "^5.20.1",
     "typescript": "^5.5.3",
     "vue": "^3.4.33",

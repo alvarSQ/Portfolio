@@ -1,16 +1,17 @@
 <template>
   <ul>
-    <li class="marBot10" v-for="(item, index) in props.question.answer" :key="index">
-      <label class="oneLine" v-if="item">
-        <input class="form_radio" :disabled="question.isAnswer" :type="props.question.typeCheck" :value="item"
-          @click="getAnswer" name="question" />
+    <li class="marBot10" v-for="item in props.question.answer" :key="item">
+      <label class="oneLine">
+        <input class="form_radio" :disabled="question.isAnswer" :type="defineTypeCheck" :value="item"
+          @click="getAnswer($event.target as HTMLInputElement)" :name="question.title" />
         {{ item }}
       </label>
     </li>
     <li v-if="props.question.isTextArea">
-      <label class="line-content">
-        <input class="form_radio" :type="defineTypeCheck" :value="props.question.freeAnswer" @click="getAnswer"
-          :disabled="!props.question.freeAnswer || question.isAnswer" name="question" />
+      <label class="oneLine">
+        <input class="form_radio" :type="defineTypeCheck" :value="props.question.freeAnswer"
+          @click="getAnswer($event.target as HTMLInputElement)"
+          :disabled="!props.question.freeAnswer || question.isAnswer" :name="question.title" />
         <input type="text" placeholder="Свой вариант" v-model="props.question.freeAnswer" />
       </label>
     </li>
@@ -18,16 +19,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onBeforeMount } from 'vue'
-// @ts-ignore
-import { useQuestionsStore } from '@/stores/formMasterStore.ts'
-const queSt = useQuestionsStore()
+import { computed } from 'vue'
+import {IQuestion} from "@/modules/interfaces/interfaces";
 
-const inCheck = ref(null)
-
-const props = defineProps({
-  question: { type: Object, required: true }
-})
+const props = defineProps<{
+  question: IQuestion
+}>()
 
 const defineTypeCheck = computed(() => {
   if (props.question.typeCheck === 'checkbox') {
@@ -38,10 +35,11 @@ const defineTypeCheck = computed(() => {
   }
 })
 
-const getAnswer = e => {
+
+const getAnswer = (e: HTMLInputElement) => {
   let cv = props.question.resultSurvey
-  if (e.target.checked && e.target._value) {
-    props.question.resultSurvey.push(e.target._value)
+  if (e.checked && e.value) {
+    props.question.resultSurvey.push(e.value)
   }
   if (
     (props.question.typeCheck === 'radio' ||
@@ -50,8 +48,8 @@ const getAnswer = e => {
   ) {
     cv.shift()
   }
-  if (!e.target.checked) {
-    cv = props.question.resultSurvey.filter(el => el !== e.target._value)
+  if (!e.checked) {
+    cv = props.question.resultSurvey.filter(el => el !== e.value)
   }
   props.question.resultSurvey = cv
 }

@@ -21,12 +21,14 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "paths": {
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": ".",
+    "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/main.ts", "vite-env.d.ts"]
+  },  
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/main.ts", "vite-env.d.ts"]
 }

@@ -13,12 +13,12 @@
         <p class="cell_menu fScolorcurs">Примеры работ</p>
       </div>
       <div class="second_row">        
-        <a class="cell_menu hover" @click="goWorks(`form-master`)"> Форм-Мастер </a>
+        <a class="cell_menu hover" @click="goWorks('form-master')"> Форм-Мастер </a>
         <a class="cell_menu hover" target="_blank" href="https://task-tracker.argovera.ru"> Менеджер Задач </a>
-        <a class="cell_menu hover" target="_blank" href="https://diskovod.argovera.ru/"> diskovod.com </a>
+        <a class="cell_menu hover" target="_blank" href="https://diskovod.argovera.ru/"> diskovod </a>
       </div>
     </div>
-    <div class="menu_column cell_menu" @click="">
+    <div class="menu_column cell_menu" @click="mainStore.trigerModal">
       <p>Меню</p>
     </div>
   </div>
@@ -26,25 +26,16 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-// import { useVarStore } from '@/stores/vars.js'
-// import { useCategoriesStore } from '@/stores/categories.js'
-// import { useProductsStore } from '@/stores/products.js'
-// const varStore = useVarStore()
-// const catStore = useCategoriesStore()
-// const prodStore = useProductsStore()
+import { useMainStore } from "@/stores/mainStore.ts";
+const mainStore = useMainStore();
 
 const router = useRouter()
-// const route = useRoute()
-
-// const goCategory = (slug) => {
-//   router.push({ name: 'category', params: { slug: slug } })
-//   prodStore.loadProducts(new URLSearchParams(`category=${slug}`))
-//   varStore.isError = false
-// }
 
 const goHome = () => router.push({ name: 'home' })
 
-const goWorks = (slug: string) => router.push({ name: slug })
+const goWorks = (slug: string) => {  
+  router.push({ name: slug })
+}
 
 </script>
 

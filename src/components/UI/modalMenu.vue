@@ -4,59 +4,51 @@
       <div class="modal-container">
         <div class="title-modal">
           <p>Меню</p>
-          <CloseSvg class="cross" @click="varStore.menuHead" />
+          <CloseSvg class="cross" @click="mainStore.trigerModal" />
         </div>
-        <div class="content-modal">
-          <a v-for="category in catStore.getCategories" :key="category.id" class="cell-modal"
-            @click="goCategory(category.slug)">
-            <p>{{ category.name }}</p>
-          </a>
-          <a class="cell-modal" href="/about">
-            <p>О нас</p>
-          </a>
-          <a class="cell-modal" href="/faq">
-            <p>FAQ</p>
-          </a>
-          <a class="cell-modal" href="/delivery">
-            <p>Доставка</p>
-          </a>
-          <a class="cell-modal" href="/requisites">
-            <p>Реквизиты</p>
-          </a>
-          <a class="cell-modal" href="/contacts">
-            <p>Контакты</p>
-          </a>
+        <div>
+          <div class="cell-modal first-modal">Примеры работ</div>
+          <div class="content-modal">
+            <a class="cell-modal" @click="goWorks('form-master')">
+              <p>Форм-Мастер</p>
+            </a>
+            <a class="cell-modal" target="_blank" href="https://task-tracker.argovera.ru">
+              <p>Менеджер Задач</p>
+            </a>
+            <a class="cell-modal" target="_blank" href="https://diskovod.argovera.ru/">
+              <p>diskovod</p>
+            </a>
+            <a class="cell-modal" target="_blank" href="https://github.com/alvarSQ">
+              <p>Остальные на Github</p>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-    <!-- <div class="modal-overlay"></div> -->
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import CloseSvg from '@/components/svg/close.vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useVarStore } from '@/stores/vars.js'
-import { useCategoriesStore } from '@/stores/categories.js'
-import { useProductsStore } from '@/stores/products.js'
-const varStore = useVarStore()
-const catStore = useCategoriesStore()
-const prodStore = useProductsStore()
+import { useRouter } from 'vue-router'
+import { useMainStore } from "@/stores/mainStore.ts";
+const mainStore = useMainStore();
 
 const router = useRouter()
-const route = useRoute()
 
-const goCategory = (slug) => {
-  varStore.menuHead()
-  router.push({ name: 'category', params: { slug: slug } })
-  prodStore.loadProducts(new URLSearchParams(`category=${slug}`))
-  varStore.isError = false
+const goWorks = (slug: string) => {
+  mainStore.trigerModal()
+  router.push({ name: slug })
 }
-
 </script>
 
 <style lang="scss">
 @import "@/assets/scss/utils/vars.scss";
+
+.first-modal {
+  color: #48b322;
+  font-family: $titleFont
+}
 
 .modal {
   min-width: auto;
@@ -162,4 +154,7 @@ const goCategory = (slug) => {
   background-color: #0006;
   z-index: 99;
 }
-</style>
+
+// ::-webkit-scrollbar {
+//   width: 0;
+// }</style>

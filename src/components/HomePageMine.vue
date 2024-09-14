@@ -35,7 +35,7 @@
         <img src="@/assets/img/sphere3(2).png" class="absL20 w44" />
         <img src="@/assets/img/sphere3(3).png" class="absL40 w44" />
         <div class="text-block">
-          <p>VUE.JS (Composition API: setup()), PINIA</p>
+          <p>VUE.JS(Composition API), NUXT.JS, PINIA</p>
           <div class="line" />
         </div>
       </div>

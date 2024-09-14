@@ -10,8 +10,8 @@
         </div>
         <div class="text-blocks5">
           <p>
-            Подробное описание работ на <a href="https://github.com/alvarSQ" target="_blank"
-              >github.com/alvarSQ</a>
+            Подробнее на <a href="https://github.com/alvarSQ" target="_blank"
+              class="green">github.com/alvarSQ</a>
           </p>
         </div>
       </div>

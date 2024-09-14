@@ -5,6 +5,7 @@ import WorksView from "@/views/WorksView.vue"
 import FormMaster from "@/views/FormMaster/FormMaster_home.vue"
 import StartQuestionViews from "@/views/FormMaster/questionStart.vue";
 import QuestionViews from "@/views/FormMaster/question.vue";
+import JsonPage from "@/views/FormMaster/json.vue";
 
 
 const router = createRouter({
@@ -34,8 +35,12 @@ const router = createRouter({
           path: '/form-master/question/:id',
           name: 'question',
           component: QuestionViews
+        },
+        {
+          path: '/form-master/question/json',
+          name: 'json',
+          component: JsonPage
         }
-
 
       ]
     },
@@ -68,7 +73,7 @@ const router = createRouter({
       component: NotFoundView,
     },
   ],
-  scrollBehavior () {
+  scrollBehavior() {
     return { top: 0 }
   }
 })
