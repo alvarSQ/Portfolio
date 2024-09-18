@@ -1,40 +1,21 @@
 <template>
-  <ul>
-    <li class="marBot10" v-for="item in props.question.answer" :key="item">
-      <label class="oneLine">
-        <input class="form_radio" :disabled="question.isAnswer" :type="defineTypeCheck" :value="item"
-          @click="getAnswer($event.target as HTMLInputElement)" :name="question.title" />
-        {{ item }}
-      </label>
-    </li>
-    <li v-if="props.question.isTextArea">
-      <label class="oneLine">
-        <input class="form_radio" :type="defineTypeCheck" :value="props.question.freeAnswer"
-          @click="getAnswer($event.target as HTMLInputElement)"
-          :disabled="!props.question.freeAnswer || question.isAnswer" :name="question.title" />
-        <input type="text" placeholder="Свой вариант" v-model="props.question.freeAnswer" />
-      </label>
-    </li>
-  </ul>
+  <label class="oneLine" v-for="item in question.answer" :key="question.id">
+    <input class="form_radio" :disabled="(item.name === '') || question.isAnswer || route.name === 'form-master'" :type="question.typeCheck"
+      :value="item.name" @click="getAnswer($event.target as HTMLInputElement)" :name="question.title" />
+    <template v-if="!item.isFree">{{ item.name }}</template>
+    <input type="text" placeholder="Свой вариант" v-model="item.name" :disabled="route.name === 'form-master'" v-else />
+  </label>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import {IQuestion} from "@/modules/interfaces/interfaces";
+import { IQuestion } from "@/modules/interfaces/interfaces";
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const props = defineProps<{
   question: IQuestion
 }>()
-
-const defineTypeCheck = computed(() => {
-  if (props.question.typeCheck === 'checkbox') {
-    return 'checkbox'
-  }
-  if (props.question.typeCheck === 'radio' || props.question.typeCheck === 'free') {
-    return 'radio'
-  }
-})
-
 
 const getAnswer = (e: HTMLInputElement) => {
   let cv = props.question.resultSurvey
@@ -42,8 +23,7 @@ const getAnswer = (e: HTMLInputElement) => {
     props.question.resultSurvey.push(e.value)
   }
   if (
-    (props.question.typeCheck === 'radio' ||
-      props.question.typeCheck === 'free') &&
+    props.question.typeCheck === 'radio' &&
     props.question.resultSurvey.length >= 2
   ) {
     cv.shift()
@@ -53,5 +33,7 @@ const getAnswer = (e: HTMLInputElement) => {
   }
   props.question.resultSurvey = cv
 }
+
+
 
 </script>

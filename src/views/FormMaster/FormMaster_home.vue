@@ -9,9 +9,7 @@
       <div class="line-content disp-block">
         <input type="text" placeholder="Вопрос" v-model="item.title" />
         <div class="marLeft10">
-
           <CustomSelect :options="['Один из списка', 'Несколько из списка']" :default="'Один из списка'" :item="item" />
-
         </div>
       </div>
       <MakeQuestions :question="item" />
@@ -29,17 +27,21 @@
       <ListQuestions :question="item" />
     </div>
 
-    <div class="line-content disp-block">
+    <div class="line-content flex">
       <a :download="`${queSt.getFirstPage.title}.json`" :href="saveForm">
-        <p class="form_btn a-btn">Сохранить форму</p>
+        <p class="form_btn a-btn">Сохранить форму в&nbsp;файл</p>
       </a>
+      <label for="upload-file">
+        <input type="file" id="upload-file" hidden @change="queSt.handleFileUpload" />
+        <p class="form_btn a-btn">Загрузить форму из&nbsp;файла</p>
+      </label>
       <button class="form_btn" @click="trigerForms" v-if="formsTriger">
-        Пример заполненной&nbsp;формы
+        Пример заполненной формы
       </button>
       <button class="form_btn" @click="trigerForms" v-else>
         Очистить&nbsp;форму
       </button>
-      <button class="form_btn" @click="startForm">Перейти к&nbsp;опросу</button>
+      <button class="form_btn" :disabled="isStart" @click="startForm">Перейти к&nbsp;опросу</button>
     </div>
   </div>
 </template>
@@ -51,32 +53,30 @@ import MakeQuestions from "@/components/FormMaster/varQuestions.vue";
 import ListQuestions from "@/components/FormMaster/ulQuestion.vue";
 import { useRouter } from "vue-router";
 import { useQuestionsStore } from "@/stores/formMasterStore.ts";
-import { IQuestion } from "@/modules/interfaces/interfaces";
 
 const router = useRouter();
 const queSt = useQuestionsStore();
 
-const startForm = () => {
-  const maxid = Math.max(...queSt.getQuestions.map((el: IQuestion) => el.id));
-  if (maxid > queSt.getQuestions.length) {
-    queSt.validId();
+const isStart = computed(() => {
+  let res = true
+  if (queSt.getQuestions.length > 1 && !queSt.validAnswer) {
+    res = false
   }
-  if (queSt.validQuestions || queSt.validFirstPage) {
-    return alert("Заполни все поля");
-  }
-  router.push({ path: "/form-master/question" });
-};
+  return res
+});
+
+const startForm = () => queSt.validFirstPage ? router.push({ path: "/form-master/question" }) : router.push({ path: "/form-master/question/1" })
 
 const saveForm = computed(() => {
   const blob = new Blob([JSON.stringify(queSt.getQuestions, null, "\t")], {
     type: "application/json",
   });
-  return URL.createObjectURL(blob);
+    return URL.createObjectURL(blob);
 });
 
 const delQuestion = (id: number) => queSt.questions.splice(id - 1, 1);
 
-const formsTriger = ref (true)
+const formsTriger = ref(true)
 const trigerForms = () => {
   formsTriger.value = !formsTriger.value
   formsTriger.value ? queSt.defaultQeuestions() : queSt.testQeuestions()

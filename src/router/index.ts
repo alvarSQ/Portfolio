@@ -44,29 +44,6 @@ const router = createRouter({
 
       ]
     },
-    // {
-    //   path: '/form-master',
-    //   name: 'form-master',
-    //   component: FormMaster,
-    //   children: [{
-    //     path: 'question/:id',
-    //     name: 'question',
-    //     component: QuestionViews
-    //   }]
-    // },
-    // {
-    //   path: '/question/:id',
-    //   name: 'question',
-    //   component: QuestionViews
-    // },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   // component: () => import('../views/AboutView.vue')
-    // },
     {
       path: "/:CatchAll(.*)",
       name: "404",

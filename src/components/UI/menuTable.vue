@@ -2,17 +2,16 @@
   <div class="menu_table">
     <div class="first_column cell_menu" @click="goHome">
       <a>
-        <p class="logo">ЯРОСЛАВ</p>
+        <p class="logo">ЯРО<span class="green">СЛАВ</span></p>
       </a>
-      <p class="text_logo">
-        <span class="green">Фронтэнд </span><br />Верстка и програмирование
+      <p class="text_logo">Фронтэнд <br />Верстка и програмирование
       </p>
     </div>
     <div class="second_column fS14">
       <div class="first_row">
         <p class="cell_menu fScolorcurs">Примеры работ</p>
       </div>
-      <div class="second_row">        
+      <div class="second_row">
         <a class="cell_menu hover" @click="goWorks('form-master')"> Форм-Мастер </a>
         <a class="cell_menu hover" target="_blank" href="https://task-tracker.argovera.ru"> Менеджер Задач </a>
         <a class="cell_menu hover" target="_blank" href="https://diskovod.argovera.ru/"> diskovod </a>
@@ -107,12 +106,6 @@ const goWorks = (slug: string) => {
   }
 }
 
-.hover {
-  &:hover {
-    color: #48b322;
-  }
-}
-
 .menu_column {
   display: none;
   font-size: 26px;
@@ -132,15 +125,6 @@ const goWorks = (slug: string) => {
 
   &:hover {
     color: #48b322;
-  }
-}
-
-.text_logo {
-  font-size: 16px;
-  line-height: normal;
-
-  @media (max-width: 520px) {
-    display: none;
   }
 }
 

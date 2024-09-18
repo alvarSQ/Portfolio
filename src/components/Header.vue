@@ -85,11 +85,6 @@ window.addEventListener('scroll', function () {
   cursor: pointer;
 }
 
-.text_logo {
-  font-size: 14px;
-  line-height: normal;
-}
-
 .header {
   position: absolute;
   top: 0;

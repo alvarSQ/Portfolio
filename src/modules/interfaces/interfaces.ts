@@ -1,11 +1,9 @@
 export interface IQuestion {
     id: number,
     title: string,
-    answer: string[],
+    answer: IAnswer[],
     resultSurvey: string[],
-    freeAnswer?: string,
-    typeCheck: 'free' | 'checkbox' | 'radio',
-    isTextArea: boolean,
+    typeCheck: 'checkbox' | 'radio',
     isActiv: boolean,
     isAnswer: boolean
 }
@@ -13,4 +11,8 @@ export interface IQuestion {
 export interface IJson {
     title?: string,
     answer?: string[]
+}
+interface IAnswer {
+    name: string,
+    isFree: boolean
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="title-work">{{ queSt.getFirstPage.title }}</div>
+  <div class="title-work">{{ defTitle }}</div>
   <div class="form_wrapper">
     <div class="form_container" v-if="isValidId">
       <div class="line-content marBot10">
@@ -56,11 +56,11 @@ const toАnswer = () => {
       queSt.jsonAnswer.push(newAnswer)
 
       question.value.isAnswer = true
-
-      isMaxPage.value ? finish() : toForward()
     }
   }
 }
+
+const defTitle = computed(() => queSt.getFirstPage.title ? queSt.getFirstPage.title : 'Без названия')
 
 const toForward = () => {
   if (question.value)
@@ -72,6 +72,7 @@ const toBack = () => {
 }
 
 const isAnswerLength = computed(() => queSt.jsonAnswer.length >= queSt.getQuestions.length)
+
 const finish = () => {
   if (isAnswerLength) {
     queSt.json = JSON.stringify(queSt.jsonAnswer, null, "\t");

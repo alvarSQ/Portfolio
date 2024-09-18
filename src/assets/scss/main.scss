@@ -219,11 +219,37 @@ select,
 textarea {
   padding: 16px 26px;
   font-family: $titleFont;
+  &:disabled {
+    background-color: #e6f1e2;
+  }
+}
+
+.flex {
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 980px) {
+    gap: 10px;
+  }
+
+  @media (max-width: 680px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .q_del {
   cursor: pointer;
   margin-left: 10px;
+}
+
+.text_logo {
+  font-size: 14px;
+  line-height: normal;
+
+  @media (max-width: 520px) {
+    display: none;
+  }
 }
 
 .form_btn {
@@ -232,6 +258,8 @@ textarea {
   -webkit-box-shadow: 1px 1px 8px 3px rgba(72, 179, 34, 0.35);
   -moz-box-shadow: 1px 1px 8px 3px rgba(72, 179, 34, 0.35);
   box-shadow: 1px 1px 8px 3px rgba(72, 179, 34, 0.35);
+  line-height: normal;
+  cursor: pointer;
   &:hover {
     background-color: #e6f1e2;
   }
@@ -242,18 +270,20 @@ textarea {
   @media (max-width: 980px) {
     font-size: 90%;
     width: 30%;
-    height: 58px;
+    height: 80px;
     padding: 0px;
   }
   @media (max-width: 680px) {
     width: 100%;
     height: 58px;
     padding: 0px;
-    margin-bottom: 10px;
   }
 }
 
 .a-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #f0f0f0;
   color: #000;
   font-family: $titleFont;

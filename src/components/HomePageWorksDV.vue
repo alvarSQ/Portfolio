@@ -5,7 +5,7 @@
       <p class="title-work">Discovod</p>
       <div class="desciption-work">
         <p style="font-weight: 700">
-          Тестовая задача на Vue3 Composition API + Pinia + SCSS
+          Тестовая задача на Vue3 Composition API + Pinia + Axios + SCSS
         </p>
         <p>
           Основная цель — сделать копию существующего сайта (страницы необходимые для
