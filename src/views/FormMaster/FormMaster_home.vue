@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import CustomSelect from "@/components/UI/custom-select.vue";
 import MakeQuestions from "@/components/FormMaster/varQuestions.vue";
 import ListQuestions from "@/components/FormMaster/ulQuestion.vue";
@@ -71,15 +71,15 @@ const saveForm = computed(() => {
   const blob = new Blob([JSON.stringify(queSt.getQuestions, null, "\t")], {
     type: "application/json",
   });
-    return URL.createObjectURL(blob);
+  return URL.createObjectURL(blob);
 });
 
 const delQuestion = (id: number) => queSt.questions.splice(id - 1, 1);
 
-const formsTriger = ref(true)
-const trigerForms = () => {
-  formsTriger.value = !formsTriger.value
-  formsTriger.value ? queSt.defaultQeuestions() : queSt.testQeuestions()
+const formsTriger = computed(() => queSt.validAnswer ? true : false)
+
+const trigerForms = () => {  
+  formsTriger.value ? queSt.testQeuestions() : queSt.defaultQeuestions()
 }
 </script>
 
