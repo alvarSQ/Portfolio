@@ -174,13 +174,14 @@ export const useQuestionsStore = defineStore('questions', {
             return
         },
         defaultQeuestions() {
-            this.questions = this.getQuestionsDefault
-            this.firstPage = this.getFirstPageDefault
+            this.getQuestions.splice(1)
+            Object.assign(this.getQuestions, this.getQuestionsDefault)
+            Object.assign(this.getFirstPage, this.getFirstPageDefault)
             // localStorage.clear()
         },
         testQeuestions() {
-            this.questions = Object.assign(this.questions, this.getQuestionsTest)
-            this.firstPage = Object.assign(this.firstPage, this.getFirstPageTest)
+            Object.assign(this.getQuestions, this.getQuestionsTest)
+            Object.assign(this.getFirstPage, this.getFirstPageTest)
         }
 
 
