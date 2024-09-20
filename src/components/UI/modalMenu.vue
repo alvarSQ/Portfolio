@@ -32,11 +32,15 @@
 import CloseSvg from '@/components/svg/close.vue'
 import { useRouter } from 'vue-router'
 import { useMainStore } from "@/stores/mainStore.ts";
+import { useQuestionsStore } from "@/stores/formMasterStore.ts"
+
+const queSt = useQuestionsStore();
 const mainStore = useMainStore();
 
 const router = useRouter()
 
 const goWorks = (slug: string) => {
+  if (slug === 'form-master') queSt.defaultQeuestions();
   mainStore.trigerModal()
   router.push({ name: slug })
 }

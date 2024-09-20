@@ -16,16 +16,16 @@
       <button class="form_btn marBot10" style="width: 100%;" :disabled="question?.isAnswer"
         @click="toАnswer">Ответить</button>
       <div class="line-content">
-        <button class="form_btn w40" :disabled="isMinPage" @click="toBack">
+        <button class="form_btn w40" :disabled="isMinPage || !question?.isAnswer" @click="toBack">
           Назад
         </button>
 
         <p class="form_counter">{{ id }} из {{ queSt.getQuestions.length }}</p>
 
-        <button class="form_btn w40" v-if="isMaxPage" @click="finish" :disabled="!isAnswerLength" >
-            Конец
-          </button>
-          <button class=" form_btn w40" v-else @click="toForward">
+        <button class="form_btn w40" v-if="isMaxPage" @click="toFinish" :disabled="!isAnswerLength">
+          Конец
+        </button>
+        <button class=" form_btn w40" :disabled="!question?.isAnswer" v-else @click="toForward">
           Вперед
         </button>
 
@@ -73,7 +73,7 @@ const toBack = () => {
 
 const isAnswerLength = computed(() => queSt.jsonAnswer.length >= queSt.getQuestions.length)
 
-const finish = () => {
+const toFinish = () => {
   if (isAnswerLength) {
     queSt.json = JSON.stringify(queSt.jsonAnswer, null, "\t");
     router.push({ name: 'json' })

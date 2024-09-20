@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
-import { IQuestion, IJson } from '@/modules/interfaces/interfaces'
+import { IQuestion, IJson } from '@/modules/interfaces/interfaces.ts'
+import { questionsDefault, questionsTest, firstPageDefault, firstPageTest } from '@/modules/variables/formMaster.ts'
+
 
 export const useQuestionsStore = defineStore('questions', {
     state: () => ({
@@ -14,112 +16,23 @@ export const useQuestionsStore = defineStore('questions', {
                 isAnswer: false
             }
         ] as IQuestion[],
-        questionsDefault: [
-            {
-                id: 1,
-                title: '',
-                answer: [],
-                resultSurvey: [],
-                typeCheck: 'radio',
-                isActiv: true,
-                isAnswer: false
-            }] as IQuestion[],
-        questionsTest: [
-            {
-                id: 1,
-                title: 'Для чего вы используете Findmykids?',
-                answer: [
-                    {
-                        name: 'Присматриваю за своим ребенком',
-                        isFree: false
-                    },
-                    {
-                        name: 'Присматриваю за внуками/племянниками',
-                        isFree: false
-                    },
-                    {
-                        name: 'Присматриваю за младшим братом/сестрой',
-                        isFree: false
-                    },
-                    {
-                        name: '',
-                        isFree: true
-                    }
-                ],
-                resultSurvey: [],
-                typeCheck: 'radio',
-                isTextArea: true,
-                isActiv: true,
-                isAnswer: false
-            },
-            {
-                id: 2,
-                title: 'Почему вы используете веб-версию Findmykids?',
-                answer: [
-                    {
-                        name: 'Удобнее смотреть с компьютера',
-                        isFree: false
-                    },
-                    {
-                        name: 'Телефон не всегда под рукой',
-                        isFree: false
-                    },
-                    {
-                        name: '',
-                        isFree: true
-                    }
-                ],
-                resultSurvey: [],
-                typeCheck: 'checkbox',
-                isActiv: false,
-                isAnswer: false
-            },
-            {
-                id: 3,
-                title: 'Если бы вы могли внести любое изменение в Findmykids, что бы это было?',
-                answer: [
-                    {
-                        name: '',
-                        isFree: true
-                    }
-                ],
-                resultSurvey: [],
-                typeCheck: 'radio',
-                isActiv: false,
-                isAnswer: false
-            }
-        ],
         jsonAnswer: [] as IJson[],
         json: {},
-        fileOut: [],
         firstPage: {
             title: '',
             description: ''
-        },
-        firstPageDefault: {
-            title: '',
-            description: ''
-        },
-        firstPageTest:
-        {
-            title: 'Веб-версия Findmykids',
-            description: 'Мы заметили, что вы активно пользуетесь веб-версией Findmykids помимо приложения на телефоне. Расскажите, что вам в ней нравится и как мы можем ее улучшить. Это поможет сделать Findmykids удобнее для вас.'
         }
     }),
-    // persist: {
-    //     storage: localStorage,
-    //     pick: ['questions', 'firstPage'],
-    // },
+    persist: {
+        storage: localStorage,
+        pick: ['questions', 'firstPage', 'jsonAnswer'],
+    },
     getters: {
         getJson: state => state.json,
         getQuestions: state => state.questions,
-        getQuestionsDefault: state => state.questionsDefault,
-        getQuestionsTest: state => state.questionsTest,
         getQuestionById: state => (id: number) => state.questions.find(el => el.id === id),
         getFirstPage: state => state.firstPage,
-        getFirstPageDefault: state => state.firstPageDefault,
-        getFirstPageTest: state => state.firstPageTest,
-        getFileOut: state => state.fileOut,
+        getDelQuestion: state => (id: number) => state.questions.filter(el => el.id !== id),
 
         getByActiv(state) {
             let st = state.questions
@@ -157,6 +70,9 @@ export const useQuestionsStore = defineStore('questions', {
 
     },
     actions: {
+        delQuestion(id: number) {
+            this.questions = JSON.parse(JSON.stringify(this.getDelQuestion(id)))
+        },
         handleFileUpload(e: any) {
             const fr = new FileReader();
             fr.readAsText(e.target.files[0])
@@ -168,20 +84,18 @@ export const useQuestionsStore = defineStore('questions', {
             this.questions.forEach(el => el.isActiv = false)
             const q = this.getQuestionById(id)
             if (q) {
-
                 return q.isActiv = true
             }
             return
         },
         defaultQeuestions() {
-            this.getQuestions.splice(1)
-            Object.assign(this.getQuestions, this.getQuestionsDefault)
-            Object.assign(this.getFirstPage, this.getFirstPageDefault)
-            // localStorage.clear()
+            this.jsonAnswer = []
+            this.questions = JSON.parse(JSON.stringify(questionsDefault))
+            Object.assign(this.firstPage, firstPageDefault)            
         },
-        testQeuestions() {
-            Object.assign(this.getQuestions, this.getQuestionsTest)
-            Object.assign(this.getFirstPage, this.getFirstPageTest)
+        testQeuestions() {            
+            this.questions = JSON.parse(JSON.stringify(questionsTest))
+            Object.assign(this.firstPage, firstPageTest)
         }
 
 

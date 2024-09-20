@@ -20,7 +20,7 @@
         <h2 @click="queSt.triggerActiv(item.id)" style="cursor: pointer" title="Нажмите для редактирования">
           {{ item.title }}
         </h2>
-        <p class="q_del" style="margin-top: 8px" title="Удалить вопрос" @click="delQuestion(item.id)">
+        <p class="q_del" style="margin-top: 8px" title="Удалить вопрос" @click="queSt.delQuestion(item.id)">
           &#10060;
         </p>
       </div>
@@ -74,7 +74,7 @@ const saveForm = computed(() => {
   return URL.createObjectURL(blob);
 });
 
-const delQuestion = (id: number) => queSt.questions.splice(id - 1, 1);
+// const delQuestion = (id: number) => queSt.questions.splice(id - 1, 1);
 
 const formsTriger = computed(() => queSt.validAnswer ? true : false)
 

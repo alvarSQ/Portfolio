@@ -26,13 +26,17 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useMainStore } from "@/stores/mainStore.ts";
+import { useQuestionsStore } from "@/stores/formMasterStore.ts"
+
+const queSt = useQuestionsStore();
 const mainStore = useMainStore();
 
 const router = useRouter()
 
 const goHome = () => router.push({ name: 'home' })
 
-const goWorks = (slug: string) => {  
+const goWorks = (slug: string) => { 
+  if (slug === 'form-master') queSt.defaultQeuestions();
   router.push({ name: slug })
 }
 
